@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LunarCode | Informacje</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <style>
+    .cursor-trail {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, #00c3ff 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(6px);
+      z-index: 9999;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Strona Główna</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="informacje.html">Informacje</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section>
+  <h1>Kim jesteśmy?</h1>
+  <p>LunarCode to zespół młodych osób tworzących innowacyjne rozwiązania dla serwerów Minecraft. Specjalizujemy się w pluginach, systemach serwerowych i personalizowanych funkcjach dla społeczności.</p>
+
+  <div class="info-cards">
+
+    <div class="info-card">
+      <h2>Doświadczenie</h2>
+      <p>Tworzymy pluginy od 2021 roku – nasze realizacje trafiły na dziesiątki serwerów w Polsce.</p>
+    </div>
+
+    <div class="info-card">
+      <h2>Indywidualne podejście</h2>
+      <p>Każdy projekt tworzymy z myślą o graczach, balansie rozgrywki i stylu serwera.</p>
+    </div>
+
+    <div class="info-card">
+      <h2>Wsparcie techniczne</h2>
+      <p>Oferujemy pomoc po wdrożeniu – aktualizacje, poprawki i rozwój pluginów na bieżąco.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SMUGA KURSORA -->
+<script>
+  const trailCount = 20;
+  const trails = [];
+
+  for (let i = 0; i < trailCount; i++) {
+    const dot = document.createElement("div");
+    dot.className = "cursor-trail";
+    document.body.appendChild(dot);
+    trails.push({ el: dot, x: 0, y: 0 });
+  }
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animate() {
+    let x = mouseX;
+    let y = mouseY;
+
+    for (let i = 0; i < trails.length; i++) {
+      const trail = trails[i];
+      trail.x += (x - trail.x) * 0.25;
+      trail.y += (y - trail.y) * 0.25;
+
+      trail.el.style.left = trail.x + "px";
+      trail.el.style.top = trail.y + "px";
+
+      x = trail.x;
+      y = trail.y;
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>

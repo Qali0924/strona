@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LunarCode | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <style>
+    .cursor-trail {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, #00c3ff 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(6px);
+      z-index: 9999;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Strona Główna</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="informacje.html">Informacje</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section>
+  <h1>Nasze Portfolio</h1>
+  <p>Oto wybrane realizacje LunarCode – kliknij, aby zobaczyć więcej szczegółów.</p>
+
+  <div class="portfolio-grid">
+
+    <div class="portfolio-card">
+      <img src="img/projekt1.png" alt="Projekt 1" />
+      <h2>System Backupów</h2>
+      <p>Kompletny plugin do nadawania graczom backupów gdy zginęli przez błąd serwera.</p>
+    </div>
+
+    <div class="portfolio-card">
+      <img src="img/projekt2.png" alt="Projekt 2" />
+      <h2>System Meteorytów</h2>
+      <p>Plugin na meteoryty które spadają i po wykopaniu dają nagrody z serwera Minestar.PL</p>
+    </div>
+
+    <div class="portfolio-card">
+      <img src="img/projekt3.png" alt="Projekt 3" />
+      <h2>System AntyXray</h2>
+      <p>Plugin na alerty gdy gracz jest podejrzany o Xraya.</p>
+    </div>
+
+    <div class="portfolio-card">
+      <img src="img/projekt4.png" alt="Projekt 4" />
+      <h2>System zostawiania efektów</h2>
+      <p>Plugin do zostawienia danych efektów po zbiciu totemów.</p>
+    </div>
+
+    <div class="portfolio-card">
+      <img src="img/projekt5.png" alt="Projekt 5" />
+      <h2>System zwracania itemów</h2>
+      <p>Plugin ten po zginięciu zostawia ci dany procent przedmiotów w ekwipunku.</p>
+    </div>
+
+    <div class="portfolio-card">
+      <img src="img/projekt6.png" alt="Projekt 6" />
+      <h2>System na Komendy</h2>
+      <p>Plugin ten po ustawieniu wykonuje daną komendę o wybranej godzinie.</p>
+    </div>
+
+    <!-- Przycisk Discord -->
+    <div class="discord-button">
+      <a href="https://discord.gg/CthjJTH6sa" target="_blank">
+        <i class="fab fa-discord"></i> Dołącz do naszego Discorda
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SMUGA KURSORA -->
+<script>
+  const trailCount = 20;
+  const trails = [];
+
+  for (let i = 0; i < trailCount; i++) {
+    const dot = document.createElement("div");
+    dot.className = "cursor-trail";
+    document.body.appendChild(dot);
+    trails.push({ el: dot, x: 0, y: 0 });
+  }
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animate() {
+    let x = mouseX;
+    let y = mouseY;
+
+    for (let i = 0; i < trails.length; i++) {
+      const trail = trails[i];
+      trail.x += (x - trail.x) * 0.25;
+      trail.y += (y - trail.y) * 0.25;
+
+      trail.el.style.left = trail.x + "px";
+      trail.el.style.top = trail.y + "px";
+
+      x = trail.x;
+      y = trail.y;
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>
